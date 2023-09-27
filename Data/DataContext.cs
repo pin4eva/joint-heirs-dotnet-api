@@ -8,15 +8,15 @@ public class DataContext : DbContext
 {
     protected readonly IConfiguration configuration;
 
-    public DataContext(IConfiguration _configuration)
+    public DataContext(IConfiguration _configuration, DbContextOptions<DataContext> options) : base(options)
     {
         configuration = _configuration;
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        // base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseNpgsql(configuration.GetConnectionString("DATABASE_STRING"));
+        // optionsBuilder.UseNpgsql(configuration.GetConnectionString("DATABASE_STRING"));
+        base.OnConfiguring(optionsBuilder);
 
     }
 
