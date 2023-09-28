@@ -8,7 +8,9 @@ public interface IUserRepo
   Task<List<User>> GetAllUsers();
   Task<User?> GetUserById(int id);
   Task<User?> CreateUser(User user);
-  void UpdateUser(User user);
-  void SaveChangesAsync();
+  Task UpdateUser(User user);
+
+  Task DeleteUser(User user);
+  Task SaveChangesAsync();
 
 }

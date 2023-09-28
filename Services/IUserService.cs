@@ -10,4 +10,6 @@ public interface IUserService
   Task<Results<NotFound, Ok<User>>> GetUserById(int id);
   Task<Results<BadRequest<string>, Ok<User>>> CreateUser(User newUser);
   Task<Results<NotFound, Ok<User>>> UpdateUser(User newUser);
+
+  Task<Results<NotFound<string>, Ok<User>>> DeleteUser(int id);
 }

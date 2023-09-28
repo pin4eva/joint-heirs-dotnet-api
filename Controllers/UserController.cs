@@ -39,4 +39,10 @@ public class UserController : ControllerBase
   {
     return await userService.UpdateUser(newUser);
   }
+
+  [HttpDelete("{id}")]
+  public async Task<Results<NotFound<string>, Ok<User>>> DeleteUser(int id)
+  {
+    return await userService.DeleteUser(id);
+  }
 }

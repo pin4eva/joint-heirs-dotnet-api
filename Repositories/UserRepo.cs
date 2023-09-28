@@ -14,7 +14,7 @@ public class UserRepo : IUserRepo
 
 
 
-  public async void UpdateUser(User newUser)
+  public async Task UpdateUser(User newUser)
   {
     await db.SaveChangesAsync();
   }
@@ -39,8 +39,14 @@ public class UserRepo : IUserRepo
     return user;
   }
 
-  public async void SaveChangesAsync()
+  public async Task SaveChangesAsync()
   {
+    await db.SaveChangesAsync();
+  }
+
+  public async Task DeleteUser(User user)
+  {
+    db.Remove(user);
     await db.SaveChangesAsync();
   }
 }

@@ -53,8 +53,18 @@ public class UserService : IUserService
     user.Name = newUser.Name;
     user.Email = newUser.Email;
 
-    userRepo.SaveChangesAsync();
+    await userRepo.SaveChangesAsync();
 
+    return TypedResults.Ok(user);
+
+  }
+
+  public async Task<Results<NotFound<string>, Ok<User>>> DeleteUser(int id)
+  {
+    var user = await userRepo.GetUserById(id);
+    if (user == null) return TypedResults.NotFound("Invalid user ID");
+
+    await userRepo.DeleteUser(user);
     return TypedResults.Ok(user);
 
   }
